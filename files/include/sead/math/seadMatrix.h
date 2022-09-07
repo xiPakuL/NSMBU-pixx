@@ -29,10 +29,10 @@ public:
     {
     }
 
-    Matrix22(const Self& n)
-    {
-        operator=(n);
-    }
+    //Matrix22(const Self& n)
+    //{
+    //    operator=(n);
+    //}
 
     Matrix22(
         T a00, T a01,
@@ -64,17 +64,17 @@ private:
     typedef Matrix34<T> Mtx34;
 
     typedef Quat<T> Quat;
-    typedef Vector4<T> Vec3;
+    typedef Vector3<T> Vec3;
 
 public:
     Matrix33()
     {
     }
 
-    Matrix33(const Self& n)
-    {
-        operator=(n);
-    }
+    //Matrix33(const Self& n)
+    //{
+    //    operator=(n);
+    //}
 
     Matrix33(
         T a00, T a01, T a02,
@@ -131,10 +131,10 @@ public:
     {
     }
 
-    Matrix34(const Self& n)
-    {
-        operator=(n);
-    }
+    //Matrix34(const Self& n)
+    //{
+    //    operator=(n);
+    //}
 
     Matrix34(
         T a00, T a01, T a02, T a03,
@@ -204,7 +204,7 @@ private:
     typedef Matrix34<T> Mtx34;
 
     typedef Quat<T> Quat;
-    typedef Vector4<T> Vec3;
+    typedef Vector3<T> Vec3;
     typedef Vector4<T> Vec4;
 
 public:
@@ -212,10 +212,10 @@ public:
     {
     }
 
-    Matrix44(const Self& n)
-    {
-        operator=(n);
-    }
+    //Matrix44(const Self& n)
+    //{
+    //    operator=(n);
+    //}
 
     Matrix44(
         T a00, T a01, T a02, T a03,
@@ -308,10 +308,17 @@ extern const Matrix44<f64> Matrix44<f64>::zero;
 template <>
 extern const Matrix44<f64> Matrix44<f64>::ident;
 
-typedef Matrix34<f32> Matrix22f;
-typedef Matrix44<f32> Matrix33f;
+typedef Matrix22<f32> Matrix22f;
+typedef Matrix33<f32> Matrix33f;
 typedef Matrix34<f32> Matrix34f;
 typedef Matrix44<f32> Matrix44f;
+
+#ifdef cafe
+static_assert(sizeof(Matrix22f) == 0x10, "sead::Matrix22<T> size mismatch");
+static_assert(sizeof(Matrix33f) == 0x24, "sead::Matrix33<T> size mismatch");
+static_assert(sizeof(Matrix34f) == 0x30, "sead::Matrix34<T> size mismatch");
+static_assert(sizeof(Matrix44f) == 0x40, "sead::Matrix44<T> size mismatch");
+#endif // cafe
 
 typedef Matrix34<f32> Matrixf;
 

@@ -17,10 +17,10 @@ public:
     {
     }
 
-    Vector2(const Self& v)
-    {
-        operator=(v);
-    }
+    //Vector2(const Self& v)
+    //{
+    //    operator=(v);
+    //}
 
     Vector2(T x_, T y_);
 
@@ -51,10 +51,10 @@ public:
     {
     }
 
-    Vector3(const Self& v)
-    {
-        operator=(v);
-    }
+    //Vector3(const Self& v)
+    //{
+    //    operator=(v);
+    //}
 
     Vector3(T x_, T y_, T z_);
 
@@ -95,10 +95,10 @@ public:
     {
     }
 
-    Vector4(const Self& v)
-    {
-        operator=(v);
-    }
+    //Vector4(const Self& v)
+    //{
+    //    operator=(v);
+    //}
 
     Vector4(T x_, T y_, T z_, T w_);
 
@@ -120,6 +120,12 @@ typedef Vector2<s32> Vector2i;
 typedef Vector2<f32> Vector2f;
 typedef Vector3<f32> Vector3f;
 typedef Vector4<f32> Vector4f;
+
+#ifdef cafe
+static_assert(sizeof(Vector2f) == 8, "sead::Vector2<T> size mismatch");
+static_assert(sizeof(Vector3f) == 0xC, "sead::Vector3<T> size mismatch");
+static_assert(sizeof(Vector4f) == 0x10, "sead::Vector4<T> size mismatch");
+#endif // cafe
 
 template <>
 extern const Vector2<f32> Vector2<f32>::zero;

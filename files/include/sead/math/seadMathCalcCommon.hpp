@@ -1,6 +1,8 @@
 #pragma once
 
+#ifdef cafe
 #include <math/cafe/seadMathCalcCommonCafe.h>
+#endif // cafe
 
 #include <cmath>
 #include <limits>
@@ -21,6 +23,8 @@ MathCalcCommon<T>::rsqrt(T t)
     return 1 / std::sqrt(t);
 }
 
+#ifdef cafe
+
 template <>
 inline f32
 MathCalcCommon<f32>::sqrt(f32 t)
@@ -34,6 +38,8 @@ MathCalcCommon<f32>::rsqrt(f32 t)
 {
     return MathCafe<f32>::rsqrt(t);
 }
+
+#endif // cafe
 
 template <typename T>
 inline T
@@ -245,14 +251,14 @@ MathCalcCommon<f32>::atan2Idx(f32 y, f32 x)
 
 template <>
 inline void
-MathCalcCommon<f32>::sinCosIdx(f32* pSin, f32* pCos, u32 idx)
+MathCalcCommon<f32>::sinCosIdx(f32* p_sin, f32* p_cos, u32 idx)
 {
     u32 index = (idx >> 24) & 0xff;
     f32 rest = static_cast<f32>(idx & 0xffffff) / 0x1000000;
     const SinCosSample& sample = cSinCosTbl[index];
 
-    /*if (pSin != NULL)*/ *pSin = sample.sin_val + sample.sin_delta * rest;
-    /*if (pCos != NULL)*/ *pCos = sample.cos_val + sample.cos_delta * rest;
+    /*if (p_sin != NULL)*/ *p_sin = sample.sin_val + sample.sin_delta * rest;
+    /*if (p_cos != NULL)*/ *p_cos = sample.cos_val + sample.cos_delta * rest;
 }
 
 template <typename T>
@@ -386,6 +392,24 @@ MathCalcCommon<u32>::abs(u32 t)
 {
     return t;
 }
+
+#ifdef cafe
+
+template <>
+inline f32
+MathCalcCommon<f32>::abs(f32 t)
+{
+    return std::fabs(t);
+}
+
+template <>
+inline f64
+MathCalcCommon<f64>::abs(f64 t)
+{
+    return std::fabs(t);
+}
+
+#endif // cafe
 
 template <typename T>
 inline s32

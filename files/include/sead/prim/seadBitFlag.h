@@ -40,7 +40,7 @@ public:
     bool isOnAll(T mask) const { return (mBits & mask) == mask; }
     bool isOff(T mask) const { return !isOn(mask); }
 
-    T getMask(T mask) const { return m_Bits & mask; }
+    T getMask(T mask) const { return mBits & mask; }
 
     static T makeMask(s32 bit)
     {
@@ -68,6 +68,12 @@ protected:
 typedef BitFlag<u8> BitFlag8;
 typedef BitFlag<u16> BitFlag16;
 typedef BitFlag<u32> BitFlag32;
+
+#ifdef cafe
+static_assert(sizeof(BitFlag8) == 1, "sead::BitFlag8 size mismatch");
+static_assert(sizeof(BitFlag16) == 2, "sead::BitFlag16 size mismatch");
+static_assert(sizeof(BitFlag32) == 4, "sead::BitFlag32 size mismatch");
+#endif // cafe
 
 } // namespace sead
 

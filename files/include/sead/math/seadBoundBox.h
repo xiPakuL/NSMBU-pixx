@@ -22,6 +22,11 @@ public:
         set(x0, y0, x1, y1);
     }
 
+    BoundBox2(const Vector2& min, const Vector2& max)
+    {
+        set(min, max);
+    }
+
     T getSizeX() const
     {
         return mMax.x - mMin.x;
@@ -113,6 +118,11 @@ public:
         set(x0, y0, z0, x1, y1, z1);
     }
 
+    BoundBox3(const Vector3& min, const Vector3& max)
+    {
+        set(min, max);
+    }
+
     T getSizeX() const
     {
         return mMax.x - mMin.x;
@@ -176,6 +186,11 @@ private:
 
 typedef BoundBox2<f32> BoundBox2f;
 typedef BoundBox3<f32> BoundBox3f;
+
+#ifdef cafe
+static_assert(sizeof(BoundBox2f) == 0x10, "sead::BoundBox2<T> size mismatch");
+static_assert(sizeof(BoundBox3f) == 0x18, "sead::BoundBox3<T> size mismatch");
+#endif // cafe
 
 }  // namespace sead
 
